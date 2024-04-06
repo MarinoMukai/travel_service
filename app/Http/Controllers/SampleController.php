@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Validator;
 class SampleController extends Controller {
     public function index() {
         $number = '12345';
-        return view('sample', ['number' => $number]);
+        return view('Sample/index', ['number' => $number]);
         // よく使われるデバッグ方法：変数の中身を見れます。
         // var_dump($number);
         // var_dump('コントローラーがつながったよ');
