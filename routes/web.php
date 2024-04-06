@@ -19,3 +19,4 @@ Route::post('/apiSubmitForm', [SampleController::class, 'api'])->name('apiSubmit
 
 // 旅行プラン自動生成の入力画面
 Route::get('travel/index', [TravelController::class, 'index']);
+Route::post('/apiSubmitForm', [TravelController::class, 'store'])->name('apiSubmit.form');

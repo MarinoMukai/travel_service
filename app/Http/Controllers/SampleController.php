@@ -24,7 +24,7 @@ class SampleController extends Controller {
      */
     public function store(Request $request)
     {
-        // バリデーション
+        // バリデーションはこっちで統一したい。
         $customMessages = [
             'inputName1.required' => '入力は必須です。',
             'inputName1.integer' => 'ここの空欄には数字以外を入れないでください。',
