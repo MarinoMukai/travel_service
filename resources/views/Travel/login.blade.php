@@ -7,6 +7,8 @@
 </head>
 
 <body>
+    <div>aasbksvlsdjvl</div>
+
     <form action="{{ route('loginsubmit.form') }}" method="POST">
         @csrf
         <label for="inputName1">名前:</label>

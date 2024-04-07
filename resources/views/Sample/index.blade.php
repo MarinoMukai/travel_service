@@ -36,7 +36,7 @@
             <!-- 成功メッセージ -->
             計算結果:
             @if(session('success'))
-                 {{ session('success') }}
+                {{ session('success') }}
             @endif
         </div>    
     </div>
