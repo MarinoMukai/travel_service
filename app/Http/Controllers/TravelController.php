@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
-
+use GeminiAPI\Client;
+use GeminiAPI\Resources\Parts\TextPart;
 class TravelController extends Controller {
     public function index() {
         
@@ -22,12 +23,18 @@ class TravelController extends Controller {
         ], $validateMessages);
 
         $requestData = $request['api'];
-        
-        // apiをやっていく。
-        // $response = Http::get('localhost//', [
-        //     'key' => $requestData,
-        // ]);
+        $response = $this->connectGeminiapi($requestData);
+        return back()->with('success', $response);
+    }
 
-        // $response = Http::get('http://localhost/products');
+    private function connectGeminiapi($requestData) {
+        $gemoiniApiKey = getenv('GEMINI_API_KEY');
+        $client = new Client($gemoiniApiKey);
+        // ここわからん。
+        $response = $client->geminiPro()->generateContent(
+            new TextPart($requestData),
+        );
+        
+        return $response->text();
     }
 }
