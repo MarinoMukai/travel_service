@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
 use GeminiAPI\Client;
 use GeminiAPI\Resources\Parts\TextPart;
 class TravelController extends Controller {
@@ -15,11 +14,11 @@ class TravelController extends Controller {
         // バリデーション
         $validateMessages = [
             'api.required' => '入力は必須です。',
-            'api.max' => '10字以内で入力してください。'
+            'api.max' => '100字以内で入力してください。'
         ];
 
         $validatedData = $request->validate([
-            'api' => 'required|max:10',
+            'api' => 'required|max:100',
         ], $validateMessages);
 
         $requestData = $request['api'];
@@ -27,14 +26,17 @@ class TravelController extends Controller {
         return back()->with('success', $response);
     }
 
+    /**
+     * geminiapiに接続する(restapiで書きたい)
+     */
     private function connectGeminiapi($requestData) {
         $gemoiniApiKey = getenv('GEMINI_API_KEY');
         $client = new Client($gemoiniApiKey);
-        // ここわからん。
+
         $response = $client->geminiPro()->generateContent(
             new TextPart($requestData),
         );
-        
+        // logを仕込みたい
         return $response->text();
     }
 }
