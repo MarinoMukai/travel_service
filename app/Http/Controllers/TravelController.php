@@ -30,8 +30,8 @@ class TravelController extends Controller {
      * geminiapiに接続する(restapiで書きたい)
      */
     private function connectGeminiapi($requestData) {
-        $gemoiniApiKey = getenv('GEMINI_API_KEY');
-        $client = new Client($gemoiniApiKey);
+        $geminiApiKey = getenv('GEMINI_API_KEY');
+        $client = new Client($geminiApiKey);
 
         $response = $client->geminiPro()->generateContent(
             new TextPart($requestData),
