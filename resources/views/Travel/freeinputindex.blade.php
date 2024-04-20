@@ -9,11 +9,11 @@
 
 <body>
     <div>
-        <div>API通信</div>
+        <h1>自動記述</h1>
         <form action="{{route('freeInput.form')}}" method="POST">
             @csrf
-            <input type="text" name="api" id="api">
-            <button type="submit">送信</button>
+            <input type="text" name="api" id="api" style="width: 800px;"><br>
+            <button type=" submit">送信</button>
         </form>
         <div>
             <!-- 成功メッセージ -->

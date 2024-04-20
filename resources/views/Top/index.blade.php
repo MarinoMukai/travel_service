@@ -8,6 +8,7 @@
 </head>
 
 <body>
+    <h1>トップ画面</h1>
     <form action="{{ route('freeInput.page') }}" method="GET">
         <button type="submit">自由記述式</button>
     </form>
