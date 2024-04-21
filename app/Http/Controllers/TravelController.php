@@ -31,7 +31,7 @@ class TravelController extends Controller
             'api' => 'required|max:100',
         ], $validateMessages);
 
-        $requestData = $request['api'];
+        $requestData = '旅行の計画を立ててください。もし、旅行以外のことを聞かれているなら、「申し訳ございません。わかりません」と答えてください。' . $request['api'];
         $response = $this->connectGeminiapi($requestData);
         return back()->with('success', $response);
     }
@@ -84,6 +84,7 @@ class TravelController extends Controller
             . '金銭：' . $request['money']
             // . '季節：' . $request['season']
             // . '目的：' . $request['purpose'] 
+            // . 'パターン:' . $request['pattern']
             . '。';
 
         // var_dump($requestData);

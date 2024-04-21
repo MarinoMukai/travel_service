@@ -10,7 +10,7 @@
 <body>
     <div>
         <h1>チャット式</h1>
-        <form action="{{route('freeInput.form')}}" method="POST">
+        <form action="{{route('chatInput.form')}}" method="POST">
             @csrf
             <input type="text" name="api" id="api">
             <button type="submit">送信</button>
