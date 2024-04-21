@@ -41,7 +41,26 @@ class TravelController extends Controller
      */
     public function choiceinputindex()
     {
-        return view('Travel.choiceinputindex');
+        $choiceList = [
+            '都道府県',
+            '交通手段',
+            '金銭',
+            // '季節',
+            // '目的',
+        ];
+
+        $prefectureList = [
+            '東京都',
+            '神奈川県',
+        ];
+
+        $transportationList = [
+            '電車',
+            'バス',
+            '車',
+        ];
+
+        return view('Travel.choiceinputindex', compact('choiceList', 'prefectureList', 'transportationList'));
     }
 
     /**
@@ -50,16 +69,25 @@ class TravelController extends Controller
     public function choiceinputstore(Request $request)
     {
         // バリデーション
-        $validateMessages = [
-            'api.required' => '入力は必須です。',
-            'api.max' => '100字以内で入力してください。'
-        ];
+        // $validateMessages = [
+        //     'api.required' => '入力は必須です。',
+        //     'api.max' => '100字以内で入力してください。'
+        // ];
 
-        $validatedData = $request->validate([
-            'api' => 'required|max:100',
-        ], $validateMessages);
+        // $validatedData = $request->validate([
+        //     'api' => 'required|max:100',
+        // ], $validateMessages);
 
-        $requestData = $request['api'];
+        $requestData = '下記の条件に合わせて旅行プランを作成してください。
+        都道府県：' . $request['prefecture']
+            . '交通手段：' . $request['transportation']
+            . '金銭：' . $request['money']
+            // . '季節：' . $request['season']
+            // . '目的：' . $request['purpose'] 
+            . '。';
+
+        // var_dump($requestData);
+        // exit();
         $response = $this->connectGeminiapi($requestData);
         return back()->with('success', $response);
     }
